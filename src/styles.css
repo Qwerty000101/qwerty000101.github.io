@@ -169,3 +169,43 @@ select:focus {
 .scan-result .error {
   color: #ef5350;           /* мягкий красный */
 }
+
+.create-event-page {
+  padding: 16px;
+}
+.create-event-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.create-event-header h3 {
+  flex: 1;
+  margin: 0;
+  text-align: center;
+}
+.options-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.options-grid .btn {
+  background: #eee;
+  color: #333;
+}
+.options-grid .btn.selected {
+  background: #4a8fe7;
+  color: white;
+}
+label {
+  display: block;
+  margin-top: 8px;
+  font-weight: bold;
+}
+.modal-input, .modal-textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import QRCode from 'qrcode';
+import { ticketsApi } from '../api';
 
-const TicketCard = ({ ticket }) => {
+const TicketCard = ({ ticket, onCancel }) => {
   const [qrDataUrl, setQrDataUrl] = useState('');
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
     if (ticket.uuid) {
@@ -12,8 +14,21 @@ const TicketCard = ({ ticket }) => {
     }
   }, [ticket.uuid]);
 
-  const statusColor = ticket.status === 'registered' ? '#4caf50' : '#2196f3';
-  const statusText = ticket.status === 'registered' ? 'Активен' : 'Отмечен';
+  const handleCancel = async () => {
+    if (!window.confirm('Удалить билет?')) return;
+    setDeleting(true);
+    try {
+      await ticketsApi.cancel(ticket.uuid);
+      if (onCancel) onCancel(); // перезагрузить список
+    } catch (err) {
+      alert('Ошибка: ' + (err.response?.data?.error || err.message));
+    } finally {
+      setDeleting(false);
+    }
+  };
+
+  const statusColor = ticket.status === 'registered' ? '#4caf50' : ticket.status === 'checked_in' ? '#2196f3' : '#999';
+  const statusText = ticket.status === 'registered' ? 'Активен' : ticket.status === 'checked_in' ? 'Отмечен' : 'Отменён';
 
   return (
     <div className="card">
@@ -27,6 +42,11 @@ const TicketCard = ({ ticket }) => {
         <span style={{ color: statusColor }}>Статус: {statusText}</span>
         <span className="caption">UUID: {ticket.uuid}</span>
       </div>
+      {ticket.status !== 'cancelled' && (
+        <button className="btn" onClick={handleCancel} disabled={deleting} style={{ marginTop: '8px', background: '#d32f2f' }}>
+          {deleting ? 'Удаление...' : 'Удалить билет'}
+        </button>
+      )}
     </div>
   );
 };

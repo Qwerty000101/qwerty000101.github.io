@@ -6,7 +6,8 @@ const MyTicketsPage = () => {
   const [tickets, setTickets] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const loadTickets = () => {
+    setLoading(true);
     ticketsApi.getMy()
       .then(data => {
         setTickets(data.tickets || []);
@@ -16,7 +17,16 @@ const MyTicketsPage = () => {
         console.error(err);
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    loadTickets();
   }, []);
+
+  // Удаляем билет из локального состояния сразу после успешной отмены
+  const handleCancel = (uuid) => {
+    setTickets(prev => prev.filter(ticket => ticket.uuid !== uuid));
+  };
 
   if (loading) return <div className="spinner"></div>;
   if (tickets.length === 0) {
@@ -26,7 +36,7 @@ const MyTicketsPage = () => {
   return (
     <div>
       {tickets.map(ticket => (
-        <TicketCard key={ticket.uuid} ticket={ticket} />
+        <TicketCard key={ticket.uuid} ticket={ticket} onCancel={() => handleCancel(ticket.uuid)} />
       ))}
     </div>
   );

@@ -18,7 +18,7 @@ function App() {
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'afisha': return <AfishaPage />;
+      case 'afisha': return <AfishaPage role={role} />;
       case 'tickets': return <MyTicketsPage />;
       case 'profile': return <ProfilePage />;
       case 'scanner': return <ScannerPage />;

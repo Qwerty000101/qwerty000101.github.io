@@ -108,10 +108,12 @@ const ScannerPage = () => {
         <div className="scan-result">
           {scanResult.valid ? (
             <div className="success">
-              <p>✅ Билет действителен</p>
-              <p><strong>Студент:</strong> {scanResult.student.full_name}</p>
-              <p><strong>Институт:</strong> {scanResult.student.institute}</p>
-              <p><strong>Группа:</strong> {scanResult.student.group}</p>
+              <p>Билет действителен</p>
+              <p><strong>Посетитель:</strong> {scanResult.student.full_name}</p>
+              <p><strong>Институт:</strong> {scanResult.student.institute || 'не указан'}</p>
+              {scanResult.student.group && (
+                <p><strong>Группа:</strong> {scanResult.student.group}</p>
+              )}
               <p><strong>Мероприятие:</strong> {scanResult.event}</p>
             </div>
           ) : (

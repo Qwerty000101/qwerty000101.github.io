@@ -42,10 +42,18 @@ export const eventsApi = {
   getList: (filters) => apiRequest('/events/list', filters),
   getById: (eventId) => apiRequest(`/events/${eventId}`),
   register: (eventId) => apiRequest('/tickets/register', { eventId }),
+  create: (data) => apiRequest('/events/create', data),
 };
 export const ticketsApi = {
   getMy: () => apiRequest('/tickets/my'),
+  cancel: (uuid) => apiRequest('/tickets/cancel', { uuid }),
 };
 export const scanApi = {
   validate: (uuid) => apiRequest('/scan/validate', { uuid }),
+};
+export const categoriesApi = {
+  getList: () => apiRequest('/categories'),
+};
+export const institutesApi = {
+  getList: () => apiRequest('/institutes'),
 };
