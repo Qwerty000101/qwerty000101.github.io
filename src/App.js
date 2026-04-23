@@ -41,7 +41,7 @@ function App() {
         </button>
         {(role === 'moderator' || role === 'admin' || role === 'teacher') && (
           <button className={`tab ${activeTab === 'scanner' ? 'active' : ''}`} onClick={() => setActiveTab('scanner')}>
-            📷 Сканер
+            Сканер
           </button>
         )}
       </div>

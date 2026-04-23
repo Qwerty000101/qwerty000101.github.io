@@ -96,7 +96,7 @@ const ScannerPage = () => {
 
   return (
     <div className="scanner-page">
-      <h3>📷 Сканер билетов</h3>
+      <h3>Сканер билетов</h3>
       <button className="btn" onClick={startScan} disabled={loading}>
         {loading ? 'Сканирование...' : 'Отсканировать QR-код'}
       </button>
