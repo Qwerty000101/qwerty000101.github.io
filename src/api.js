@@ -8,7 +8,7 @@ console.log('🔗 API_BASE_URL:', API_BASE_URL);
 function getUserId() {
   if (!window.WebApp) {
     console.warn('MAX Bridge не загружен, используется тестовый userId');
-    return 123456; // Для тестов вне MAX
+    return 94574886; // Для тестов вне MAX
   }
   const initData = window.WebApp.initDataUnsafe;
   const id = initData?.user?.id;
