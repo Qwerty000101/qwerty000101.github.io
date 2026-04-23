@@ -23,7 +23,9 @@ async function apiRequest(endpoint, data = {}) {
   });
   return response.data;
 }
-
+export const usersApi = {
+  getMe: () => apiRequest('/users/me'),
+};
 export const eventsApi = {
   getList: (filters) => apiRequest('/events/list', filters),
   getById: (eventId) => apiRequest(`/events/${eventId}`),

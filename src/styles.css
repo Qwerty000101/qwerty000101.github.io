@@ -135,3 +135,21 @@ select {
   margin-top: 12px;
   font-size: 14px;
 }
+.scanner-page {
+  padding: 8px 0;
+}
+
+.scan-result {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.scan-result .success {
+  color: #2e7d32;
+}
+
+.scan-result .error {
+  color: #d32f2f;
+}
