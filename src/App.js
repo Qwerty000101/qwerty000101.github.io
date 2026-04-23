@@ -31,13 +31,13 @@ function App() {
       <div className="content">{renderContent()}</div>
       <div className="tabbar">
         <button className={`tab ${activeTab === 'afisha' ? 'active' : ''}`} onClick={() => setActiveTab('afisha')}>
-          🎟️ Афиша
+          Афиша
         </button>
         <button className={`tab ${activeTab === 'tickets' ? 'active' : ''}`} onClick={() => setActiveTab('tickets')}>
-          🎫 Билеты
+          Билеты
         </button>
         <button className={`tab ${activeTab === 'profile' ? 'active' : ''}`} onClick={() => setActiveTab('profile')}>
-          👤 Профиль
+          Профиль
         </button>
         {(role === 'moderator' || role === 'admin' || role === 'teacher') && (
           <button className={`tab ${activeTab === 'scanner' ? 'active' : ''}`} onClick={() => setActiveTab('scanner')}>
