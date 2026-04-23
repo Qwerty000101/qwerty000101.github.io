@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Убираем возможные пробелы и лишние символы
 const API_BASE_URL = (process.env.REACT_APP_API_URL || 'https://fde1e50f-7598-4e00-a2c4-729676c2cb28.tunnel4.com').trim();
-console.log('🔗 API_BASE_URL:', API_BASE_URL);
+console.log('🔗 NEW API_BASE_URL:', API_BASE_URL);
 
 // Получение userId из initDataUnsafe
 function getUserId() {
