@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { eventsApi, categoriesApi, institutesApi } from '../api';
+import '@maxhub/max-ui/dist/styles.css';
+import { Textarea,Button, Container, Panel, SearchInput, Form } from '@maxhub/max-ui';
 
 const CreateEventPage = ({ onClose, onSuccess }) => {
   const [form, setForm] = useState({
@@ -44,9 +46,6 @@ const CreateEventPage = ({ onClose, onSuccess }) => {
 
   // Общие стили для полей ввода
   const inputStyle = {
-    backgroundColor: "#0A1724",
-    color: 'white',
-    border: '1px solid #666',
     padding: '8px',
     borderRadius: '4px',
     width: '100%',
@@ -68,7 +67,7 @@ const CreateEventPage = ({ onClose, onSuccess }) => {
 
       {error && <div className="error-message">{error}</div>}
 
-      <div className="card">
+      <Panel>
         <label style={labelStyle}>Название</label>
         <input
           type="text"
@@ -156,7 +155,7 @@ const CreateEventPage = ({ onClose, onSuccess }) => {
           className="modal-input"
           style={inputStyle}
         />
-      </div>
+      </Panel>
 
       <button
         className="btn primary"

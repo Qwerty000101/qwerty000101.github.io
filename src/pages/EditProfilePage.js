@@ -36,11 +36,7 @@ const EditProfilePage = ({ profile, onClose, onSuccess }) => {
     }
   };
 
-  // Стили как в CreateEventPage
   const inputStyle = {
-    backgroundColor: "#0A1724",
-    color: 'white',
-    border: '1px solid #666',
     padding: '8px',
     borderRadius: '4px',
     width: '100%',

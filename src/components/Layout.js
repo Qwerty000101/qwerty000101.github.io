@@ -12,19 +12,19 @@ const Layout = ({ children, activeTab, onTabChange }) => {
           selected={activeTab === 'afisha'}
           onClick={() => onTabChange('afisha')}
         >
-          🎟️ Афиша
+          Афиша
         </TabbarItem>
         <TabbarItem
           selected={activeTab === 'tickets'}
           onClick={() => onTabChange('tickets')}
         >
-          🎫 Билеты
+          Билеты
         </TabbarItem>
         <TabbarItem
           selected={activeTab === 'profile'}
           onClick={() => onTabChange('profile')}
         >
-          👤 Профиль
+          Профиль
         </TabbarItem>
       </Tabbar>
     </div>

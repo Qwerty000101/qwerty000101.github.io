@@ -5,6 +5,8 @@ import ProfilePage from './pages/ProfilePage';
 import ScannerPage from './pages/ScannerPage';
 import { usersApi } from './api';
 import './styles.css';
+import '@maxhub/max-ui/dist/styles.css';
+import { Textarea,Button, Container, Flex, SearchInput } from '@maxhub/max-ui';
 
 function App() {
   const [activeTab, setActiveTab] = useState('afisha');
@@ -33,22 +35,22 @@ function App() {
   return (
     <div className="app">
       <div className="content">{renderContent()}</div>
-      <div className="tabbar">
-        <button className={`tab ${activeTab === 'afisha' ? 'active' : ''}`} onClick={() => setActiveTab('afisha')}>
+      <Flex>
+        <Button className={`tab ${activeTab === 'afisha' ? 'active' : ''}`} onClick={() => setActiveTab('afisha')}>
           Афиша
-        </button>
-        <button className={`tab ${activeTab === 'tickets' ? 'active' : ''}`} onClick={() => setActiveTab('tickets')}>
+        </Button>
+        <Button className={`tab ${activeTab === 'tickets' ? 'active' : ''}`} onClick={() => setActiveTab('tickets')}>
           Билеты
-        </button>
-        <button className={`tab ${activeTab === 'profile' ? 'active' : ''}`} onClick={() => setActiveTab('profile')}>
+        </Button>
+        <Button className={`tab ${activeTab === 'profile' ? 'active' : ''}`} onClick={() => setActiveTab('profile')}>
           Профиль
-        </button>
+        </Button>
         {(role === 'moderator' || role === 'admin') && (
-          <button className={`tab ${activeTab === 'scanner' ? 'active' : ''}`} onClick={() => setActiveTab('scanner')}>
+          <Button className={`tab ${activeTab === 'scanner' ? 'active' : ''}`} onClick={() => setActiveTab('scanner')}>
             Сканер
-          </button>
+          </Button>
         )}
-      </div>
+      </Flex>
     </div>
   );
 }

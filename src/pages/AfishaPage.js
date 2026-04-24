@@ -4,6 +4,8 @@ import EventCard from '../components/EventCard';
 import CreateEventPage from '../pages/CreateEventPage';
 import EditEventPage from '../pages/EditEventPage';
 import StatsPage from '../pages/StatsPage';   // ← добавлен импорт
+import '@maxhub/max-ui/dist/styles.css';
+import { Textarea,Button, Container, Flex, SearchInput } from '@maxhub/max-ui';
 
 const AfishaPage = ({ role }) => {
   const [events, setEvents] = useState([]);
@@ -158,36 +160,48 @@ const AfishaPage = ({ role }) => {
   // ========== Обычная афиша ==========
   return (
     <div>
+      
       {/* Поле поиска */}
-      <div className="search-box">
-        <input
-          type="text"
-          placeholder="Поиск"
+        <SearchInput
+        type="text"
+          defaultValue=""
+          mode="secondary"
           value={search}
+          placeholder="Поиск"
           onChange={(e) => setSearch(e.target.value)}
-          style={{ width: '100%', padding: '10px', background:"#132a41",color:"white", marginBottom: '10px', borderRadius: '8px', border: '1px solid #ddd'}}
-        />
-      </div>
 
-      {/* Кнопки "Дополнительно" и "Добавить мероприятие" */}
-      <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
-        <button
-          className="btn"
-          onClick={() => setShowFilters(!showFilters)}
-          style={{ flex: 1, background: '#4a8fe7' }}
+        />
+        <Container 
+        fullWidth="true"
         >
-          {showFilters ? 'Свернуть' : 'Дополнительные параметры'}
-        </button>
-        {role === 'admin' && (
-          <button
-            className="btn"
+        <Flex
+          direction="column"
+          gap={12}
+          style={{marginTop:"15px"}}
+        >
+      {/* Кнопки "Дополнительно" и "Добавить мероприятие" */}
+      {role === 'admin' && (
+          <Button
+            appearance="neutral"
+            mode="secondary"
+            size="medium"
             onClick={() => setShowCreate(true)}
-            style={{ background: '#2e7d32' }}
+            stretched
           >
             Добавить
-          </button>
+          </Button>
         )}
-      </div>
+        <Button
+          appearance="neutral"
+          mode="secondary"
+          size="medium"
+          onClick={() => setShowFilters(!showFilters)}
+          stretched
+        >
+          {showFilters ? 'Свернуть' : 'Дополнительные параметры'}
+        </Button>
+     </Flex>
+</Container>
 
       {/* Расширенные фильтры */}
       {showFilters && (

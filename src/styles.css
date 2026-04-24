@@ -6,7 +6,6 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background: #0b1a2f;           /* глубокий тёмно-синий фон */
   color: #e0e7f0;                /* светлый текст */
 }
 
@@ -24,8 +23,6 @@ body {
 
 .tabbar {
   display: flex;
-  border-top: 1px solid #1e3048;
-  background: #132338;           /* тёмно-синий фон таббара */
 }
 
 .tab {
@@ -45,7 +42,6 @@ body {
 }
 
 .card {
-  background: #132a41;          /* тёмная карточка */
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 16px;
@@ -96,7 +92,7 @@ body {
   content: '';
   width: 32px;
   height: 32px;
-  border: 4px solid #132a41;        /* тёмная обводка */
+  border: 4px solid #ffffff;        /* тёмная обводка */
   border-top-color: #4a8fe7;        /* акцентный синий */
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -110,11 +106,8 @@ select {
   width: 100%;
   padding: 10px;
   margin-bottom: 12px;
-  border: 1px solid #1e3048;
   border-radius: 8px;
   font-size: 16px;
-  background: #132a41;
-  color: #e0e7f0;
 }
 
 select:focus {
@@ -130,6 +123,7 @@ select:focus {
 
 .filters {
   margin-bottom: 16px;
+  margin-top: 16px;
 }
 
 .empty-message {
@@ -159,7 +153,6 @@ select:focus {
   margin-top: 20px;
   padding: 16px;
   border-radius: 12px;
-  background: #132a41;
 }
 
 .scan-result .success {
@@ -189,23 +182,16 @@ select:focus {
   gap: 8px;
   margin-bottom: 16px;
 }
-.options-grid .btn {
+/* .options-grid .btn {
   background: #eee;
   color: #333;
 }
 .options-grid .btn.selected {
   background: #4a8fe7;
   color: white;
-}
+} */
 label {
   display: block;
   margin-top: 8px;
   font-weight: bold;
-}
-.modal-input, .modal-textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 8px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
 }

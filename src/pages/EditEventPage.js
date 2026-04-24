@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { eventsApi, categoriesApi, institutesApi } from '../api';
+import '@maxhub/max-ui/dist/styles.css';
+import { Textarea, Button, Container, Panel, SearchInput, Form } from '@maxhub/max-ui';
 
 const EditEventPage = ({ event, onClose, onSuccess }) => {
   const [form, setForm] = useState({
@@ -42,16 +44,13 @@ const EditEventPage = ({ event, onClose, onSuccess }) => {
     }
   };
 
-  // Стили как в CreateEventPage
   const inputStyle = {
-    backgroundColor: "#0A1724",
-    color: 'white',
-    border: '1px solid #666',
     padding: '8px',
     borderRadius: '4px',
     width: '100%',
     boxSizing: 'border-box'
   };
+
   const labelStyle = {
     display: 'block',
     marginBottom: '8px',
@@ -67,44 +66,98 @@ const EditEventPage = ({ event, onClose, onSuccess }) => {
 
       {error && <div className="error-message">{error}</div>}
 
-      <div className="card">
+      <Panel>
         <label style={labelStyle}>Название</label>
-        <input type="text" value={form.title} onChange={e => updateField('title', e.target.value)} style={inputStyle} />
+        <input
+          type="text"
+          value={form.title}
+          onChange={e => updateField('title', e.target.value)}
+          className="modal-input"
+          style={inputStyle}
+        />
 
         <label style={labelStyle}>Описание</label>
-        <textarea value={form.description} onChange={e => updateField('description', e.target.value)} style={{ ...inputStyle, minHeight: '80px', resize: 'vertical' }} />
+        <textarea
+          value={form.description}
+          onChange={e => updateField('description', e.target.value)}
+          className="modal-textarea"
+          style={{ ...inputStyle, minHeight: '80px', resize: 'vertical' }}
+        />
 
         <label style={labelStyle}>Категория</label>
-        <select value={form.category} onChange={e => updateField('category', e.target.value)} style={inputStyle}>
+        <select
+          value={form.category}
+          onChange={e => updateField('category', e.target.value)}
+          className="modal-input"
+          style={inputStyle}
+        >
           <option value="">Выберите категорию</option>
-          {categories.map(c => <option key={c.key} value={c.key}>{c.name}</option>)}
+          {categories.map(c => (
+            <option key={c.key} value={c.key}>{c.name}</option>
+          ))}
         </select>
 
         <label style={labelStyle}>Институт</label>
-        <select value={form.institute_filter} onChange={e => updateField('institute_filter', e.target.value)} style={inputStyle}>
+        <select
+          value={form.institute_filter}
+          onChange={e => updateField('institute_filter', e.target.value)}
+          className="modal-input"
+          style={inputStyle}
+        >
           <option value="">Все институты</option>
-          {institutes.map(inst => <option key={inst.key} value={inst.key}>{inst.name}</option>)}
+          {institutes.map(inst => (
+            <option key={inst.key} value={inst.key}>{inst.name}</option>
+          ))}
         </select>
 
         <div style={{ display: 'flex', gap: '10px' }}>
           <div style={{ flex: 1 }}>
             <label style={labelStyle}>Дата</label>
-            <input type="date" value={form.event_date} onChange={e => updateField('event_date', e.target.value)} style={inputStyle} />
+            <input
+              type="date"
+              value={form.event_date}
+              onChange={e => updateField('event_date', e.target.value)}
+              className="modal-input"
+              style={inputStyle}
+            />
           </div>
           <div style={{ flex: 1 }}>
             <label style={labelStyle}>Время</label>
-            <input type="time" value={form.event_time} onChange={e => updateField('event_time', e.target.value)} style={inputStyle} />
+            <input
+              type="time"
+              value={form.event_time}
+              onChange={e => updateField('event_time', e.target.value)}
+              className="modal-input"
+              style={inputStyle}
+            />
           </div>
         </div>
 
         <label style={labelStyle}>Место</label>
-        <input type="text" value={form.location} onChange={e => updateField('location', e.target.value)} style={inputStyle} />
+        <input
+          type="text"
+          value={form.location}
+          onChange={e => updateField('location', e.target.value)}
+          className="modal-input"
+          style={inputStyle}
+        />
 
         <label style={labelStyle}>Количество мест</label>
-        <input type="number" value={form.capacity} onChange={e => updateField('capacity', e.target.value)} style={inputStyle} />
-      </div>
+        <input
+          type="number"
+          value={form.capacity}
+          onChange={e => updateField('capacity', e.target.value)}
+          className="modal-input"
+          style={inputStyle}
+        />
+      </Panel>
 
-      <button className="btn primary" onClick={handleUpdate} disabled={loading} style={{ marginTop: '16px' }}>
+      <button
+        className="btn primary"
+        onClick={handleUpdate}
+        disabled={loading}
+        style={{ marginTop: '16px' }}
+      >
         {loading ? 'Сохранение...' : 'Сохранить'}
       </button>
     </div>
