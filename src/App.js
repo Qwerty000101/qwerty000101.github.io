@@ -10,17 +10,21 @@ function App() {
   const [activeTab, setActiveTab] = useState('afisha');
   const [role, setRole] = useState(null);
 
-  useEffect(() => {
+  const loadRole = () => {
     usersApi.getMe()
       .then(data => setRole(data.user?.role))
       .catch(console.error);
+  };
+
+  useEffect(() => {
+    loadRole();
   }, []);
 
   const renderContent = () => {
     switch (activeTab) {
       case 'afisha': return <AfishaPage role={role} />;
       case 'tickets': return <MyTicketsPage />;
-      case 'profile': return <ProfilePage />;
+      case 'profile': return <ProfilePage onRoleChange={loadRole} />;
       case 'scanner': return <ScannerPage />;
       default: return <AfishaPage />;
     }
@@ -39,7 +43,7 @@ function App() {
         <button className={`tab ${activeTab === 'profile' ? 'active' : ''}`} onClick={() => setActiveTab('profile')}>
           Профиль
         </button>
-        {(role === 'moderator' || role === 'admin' || role === 'teacher') && (
+        {(role === 'moderator' || role === 'admin') && (
           <button className={`tab ${activeTab === 'scanner' ? 'active' : ''}`} onClick={() => setActiveTab('scanner')}>
             Сканер
           </button>

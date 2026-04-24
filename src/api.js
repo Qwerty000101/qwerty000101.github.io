@@ -37,12 +37,18 @@ async function apiRequest(endpoint, data = {}) {
 
 export const usersApi = {
   getMe: () => apiRequest('/users/me'),
+  updateProfile: (data) => apiRequest('/users/update', data),
 };
 export const eventsApi = {
   getList: (filters) => apiRequest('/events/list', filters),
   getById: (eventId) => apiRequest(`/events/${eventId}`),
   register: (eventId) => apiRequest('/tickets/register', { eventId }),
   create: (data) => apiRequest('/events/create', data),
+  update: (data) => apiRequest('/events/update', data),
+  delete: (id) => apiRequest('/events/delete', { id }),
+  stats: (eventId) => apiRequest('/events/stats', { eventId }),
+  exportXlsx: (eventId) => apiRequest('/events/export_xlsx', { eventId }),
+  participants: (eventId) => apiRequest('/events/participants', { eventId }),
 };
 export const ticketsApi = {
   getMy: () => apiRequest('/tickets/my'),

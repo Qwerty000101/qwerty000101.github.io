@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { eventsApi, ticketsApi, categoriesApi, institutesApi } from '../api';
 import EventCard from '../components/EventCard';
-import CreateEventPage from '../pages/CreateEventPage'; // ✅ полноэкранная форма
+import CreateEventPage from '../pages/CreateEventPage';
+import EditEventPage from '../pages/EditEventPage';
+import StatsPage from '../pages/StatsPage';   // ← добавлен импорт
 
 const AfishaPage = ({ role }) => {
   const [events, setEvents] = useState([]);
@@ -13,7 +15,9 @@ const AfishaPage = ({ role }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [categories, setCategories] = useState([]);
   const [institutes, setInstitutes] = useState([]);
-  const [showCreate, setShowCreate] = useState(false); // ← управление всей страницей создания
+  const [showCreate, setShowCreate] = useState(false);
+  const [editingEvent, setEditingEvent] = useState(null);
+  const [statsEvent, setStatsEvent] = useState(null);   // ← состояние для статистики
 
   // Загрузка категорий
   useEffect(() => {
@@ -68,7 +72,6 @@ const AfishaPage = ({ role }) => {
   const handleRegister = async (eventId) => {
     try {
       await eventsApi.register(eventId);
-      //alert('✅ Вы успешно зарегистрированы! Билет отправлен в бот.');
       await loadEvents();
       await loadTickets();
     } catch (error) {
@@ -82,7 +85,6 @@ const AfishaPage = ({ role }) => {
     if (!window.confirm('Отменить регистрацию на это мероприятие?')) return;
     try {
       await ticketsApi.cancel(ticket.uuid);
-      //alert('✅ Регистрация отменена');
       await loadEvents();
       await loadTickets();
     } catch (error) {
@@ -94,9 +96,29 @@ const AfishaPage = ({ role }) => {
 
   const refreshEvents = () => {
     loadEvents();
+    loadTickets();
   };
 
-  // ========== Показываем страницу создания, если showCreate = true ==========
+  // Обработчики для кнопок меню
+  const handleEdit = (event) => {
+    setEditingEvent(event);
+  };
+  
+  const handleDelete = async (event) => {
+    if (!window.confirm(`Удалить мероприятие "${event.title}"?`)) return;
+    try {
+      await eventsApi.delete(event.id);
+      refreshEvents();
+    } catch (error) {
+      alert('❌ ' + (error.response?.data?.error || 'Ошибка удаления'));
+    }
+  };
+
+  const handleStats = (event) => {
+    setStatsEvent(event);
+  };
+
+  // Если открыто создание
   if (showCreate) {
     return (
       <CreateEventPage
@@ -105,6 +127,30 @@ const AfishaPage = ({ role }) => {
           refreshEvents();
           setShowCreate(false);
         }}
+      />
+    );
+  }
+
+  // Если открыто редактирование
+  if (editingEvent) {
+    return (
+      <EditEventPage
+        event={editingEvent}
+        onClose={() => setEditingEvent(null)}
+        onSuccess={() => {
+          refreshEvents();
+          setEditingEvent(null);
+        }}
+      />
+    );
+  }
+
+  // Если открыта статистика
+  if (statsEvent) {
+    return (
+      <StatsPage
+        event={statsEvent}
+        onClose={() => setStatsEvent(null)}
       />
     );
   }
@@ -172,8 +218,12 @@ const AfishaPage = ({ role }) => {
             key={event.id}
             event={event}
             isRegistered={isRegistered(event.id)}
+            role={role}
             onRegister={handleRegister}
             onUnregister={handleUnregister}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            onStats={handleStats}   // ← передаём обработчик
           />
         ))
       )}
