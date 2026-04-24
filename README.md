@@ -1,6 +1,6 @@
 Мини-приложение бота "СКФУ События" для управления мероприятиями в MAX 
 
-Репозиторий бота: https://github.com/Qwerty000101/qwerty000101.github.io
+Репозиторий бота: https://github.com/Qwerty000101/bot_events
 
 Сетевой адрес мини-приложения: https://qwerty000101.github.io/
 
