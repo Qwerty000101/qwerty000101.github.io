@@ -63,7 +63,6 @@ const ProfilePage = ({ onRoleChange }) => {
       <p><strong>Институт:</strong> {profile.institute_name || 'не указан'}</p>
       {profile.group_name && <p><strong>Группа:</strong> {profile.group_name}</p>}
       <p><strong>Статус:</strong> {roleText}</p>
-      <p><strong>ID:</strong> {profile.user_id}</p>
       <button className="btn" onClick={() => setEditing(true)} style={{ marginTop: '12px' }}>
         Изменить профиль
       </button>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // URL вашего туннеля (без пробела!)
-const API_BASE_URL = (process.env.REACT_APP_API_URL || 'https://fde1e50f-7598-4e00-a2c4-729676c2cb28.tunnel4.com/api').trim();
+const API_BASE_URL = (process.env.REACT_APP_API_URL || '5.42.126.192/api').trim();
 
 // Тестовый ID, который будет использован при отсутствии реальной сессии MAX
 const TEST_USER_ID = 123456;
